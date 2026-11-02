@@ -140,10 +140,10 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 /* ---------- Home ---------- */
 .scr-home .scroller{padding-top:calc(var(--sb) + 56px)}
 .map img{display:block; width:100%; height:200px; object-fit:cover; -webkit-user-drag:none}
-.end-space{height:174px}
+.end-space{height:158px}
 
 /* ---------- Fieldwork ---------- */
-.scr-fieldwork .scroller{padding-top:calc(var(--sb) + 128px); padding-bottom:120px}
+.scr-fieldwork .scroller{padding-top:calc(var(--sb) + 128px); padding-bottom:104px}
 .status-row{display:grid; gap:8px; margin-top:12px}
 .status-row.c2{grid-template-columns:1fr 1fr}
 .status-row.c3{grid-template-columns:1fr 1fr 1fr}
@@ -167,7 +167,7 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 .rows .plus{margin-left:9px; margin-right:0}
 
 /* ---------- My Activity ---------- */
-.scr-activity .scroller{padding-top:calc(var(--sb) + 87.5px); padding-bottom:120px}
+.scr-activity .scroller{padding-top:calc(var(--sb) + 87.5px); padding-bottom:104px}
 .h-perf{font-size:18px; line-height:26px; font-weight:600; color:var(--ink)}
 .seg{position:relative; display:grid; grid-template-columns:repeat(3,1fr); height:38px; margin-top:16.5px; border-radius:8px; background:var(--seg)}
 .seg button{position:relative; z-index:1; padding:0; border:0; background:none; font-size:12px; color:var(--ink-2); cursor:pointer; border-radius:8px}
@@ -204,7 +204,7 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 .hist .when span{display:block; margin-top:1px}
 
 /* ---------- Sync History ---------- */
-.scr-sync .scroller{padding-top:calc(var(--sb) + 88px); padding-bottom:120px}
+.scr-sync .scroller{padding-top:calc(var(--sb) + 88px); padding-bottom:104px}
 .month-row{display:flex; align-items:center; justify-content:space-between; height:24px}
 .month-btn{display:flex; align-items:center; gap:10px; padding:0; border:0; background:none; font-size:16px; font-weight:500; color:var(--ink); cursor:pointer}
 .month-btn svg{width:14px; height:14px; stroke-width:2; color:var(--ink-3)}
@@ -233,7 +233,7 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 .empty{margin-top:43.5px; text-align:center; font-size:15px; line-height:22px; color:var(--ink-3)}
 
 /* ---------- Profile ---------- */
-.scr-profile .scroller{padding-top:calc(var(--sb) + 92px); padding-bottom:120px}
+.scr-profile .scroller{padding-top:calc(var(--sb) + 92px); padding-bottom:104px}
 .pf-top{display:flex; align-items:center; gap:20px}
 .pf-avatar{width:64px; height:64px; flex:none; border-radius:50%; border:1px solid var(--rule-3); overflow:hidden; background:var(--surface)}
 .pf-avatar img{display:block; width:100%; height:100%; object-fit:cover}
@@ -247,7 +247,7 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 .fields b.link{color:var(--link); text-decoration:underline; text-underline-offset:2px}
 
 /* ---------- Settings (module under More) ---------- */
-.scr-settings .scroller{padding-top:calc(var(--sb) + 87.5px); padding-bottom:120px}
+.scr-settings .scroller{padding-top:calc(var(--sb) + 87.5px); padding-bottom:104px}
 .set-list{margin:0 20px}
 .set-list li{display:flex; align-items:center; height:64px; border-bottom:1px solid var(--rule-3); font-size:13px; color:var(--ink-2)}
 .set-list li:last-child{border-bottom:0}
@@ -263,14 +263,14 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 .set-foot div{display:flex; align-items:center; justify-content:center; gap:7px; margin-top:5px; font-size:12px; line-height:18px; color:var(--ink-2)}
 
 /* ---------- Sync button + bottom nav ---------- */
-.sync{position:absolute; right:20px; bottom:112px; z-index:25; height:36px; display:flex; align-items:center; gap:3px; padding:0 11px 0 9px;
+.sync{position:absolute; right:20px; bottom:96px; z-index:25; height:36px; display:flex; align-items:center; gap:3px; padding:0 11px 0 9px;
   background:var(--surface); border:1.5px solid var(--maroon); border-radius:8px; color:var(--maroon); font-size:15px; font-weight:600;
   box-shadow:0 2px 8px rgba(20,22,40,.10); transition:transform var(--dur) var(--ease)}
 .sync svg{width:22px; height:22px; stroke-width:1.6}
 .is-compact .sync{transform:translateY(72px)}
 .phone:not([data-screen="home"]) .sync{display:none}
 
-.dock{position:absolute; left:20px; right:20px; bottom:24px; height:68px; z-index:25; pointer-events:none}
+.dock{position:absolute; left:20px; right:20px; bottom:8px; height:68px; z-index:25; pointer-events:none}
 .nav-bg{position:absolute; left:0; top:0; width:100%; height:68px; border-radius:34px; background:var(--surface); pointer-events:auto;
   box-shadow:0 4px 22px rgba(20,22,40,.09), 0 0 1px rgba(20,22,40,.10); transition:width var(--dur) var(--ease)}
 .is-compact .nav-bg{width:88px; cursor:pointer}
