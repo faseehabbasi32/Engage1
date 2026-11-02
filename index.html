@@ -26,7 +26,7 @@
   --tint:#f6eff3; --tint-line:#ffe2f0; --donut-track:#f1c8dd;
   --tile2:#f2e8ed; --tile2-line:#fee4f1;
   --ink:#292b33; --ink-2:#545766; --ink-3:#838799; --ink-4:#9ea2b3; --tile-label:#8b8f9f;
-  --line:#edeef2; --line-soft:#f0f1f4; --rule:#eff0f4; --rule-2:#e1e2e9; --rule-3:#dcdee6;
+  --line:#edeef2; --line-soft:#f0f1f4; --rule:#eff0f4; --rule-2:#e1e2e9; --rule-3:#dcdee6; --rule-4:#e3e4ea; --day-off:#f1f2f6; --day-off-ink:#b3b6c4;
   --chip:#f6f7f9; --seg:#f6f7f9; --surface:#ffffff; --close-line:#dee0e7;
   --rail-grey:#bbbfcc; --rail-amber:#ffc354; --amber:#ffc252; --green:#1bd88c; --red:#ff5d5d;
   --danger:#d63a3a; --black:#000000; --on-maroon:#ffffff; --ok:#03a362; --toggle-off:#d5d7de;
@@ -204,33 +204,40 @@ svg.ic{display:block; fill:none; stroke:currentColor; stroke-linecap:round; stro
 .hist .when span{display:block; margin-top:1px}
 
 /* ---------- Sync History ---------- */
-.scr-sync .scroller{padding-top:calc(var(--sb) + 88px); padding-bottom:104px}
-.month-row{display:flex; align-items:center; justify-content:space-between; height:24px}
-.month-btn{display:flex; align-items:center; gap:10px; padding:0; border:0; background:none; font-size:16px; font-weight:500; color:var(--ink); cursor:pointer}
-.month-btn svg{width:14px; height:14px; stroke-width:2; color:var(--ink-3)}
-.today-lbl{font-size:14px; color:var(--ink)}
-.week{display:grid; grid-template-columns:repeat(7, 48px); justify-content:center; margin:18.5px -0.5px 0}
-.week .wd{height:18px; text-align:center; font-size:12px; line-height:18px; color:var(--ink-3)}
-.day{justify-self:center; width:36px; height:36px; margin-top:12.5px; padding:0; border:1px solid transparent; border-radius:50%; background:none; font-size:15px; color:var(--ink); cursor:pointer}
-.day.today{border-color:var(--maroon); color:var(--maroon)}
-.day[aria-pressed="true"]{background:var(--maroon); border-color:var(--maroon); color:var(--on-maroon); font-weight:600}
-.cal-rule{height:1px; margin-top:23px; background:var(--rule-2)}
-.sd-head{font-size:16px; line-height:24px; font-weight:600; margin-top:26px}
-.sd-cards{display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-top:9px}
-.card{background:var(--surface); border-radius:8px; box-shadow:0 2px 10px rgba(20,22,40,.09)}
-.sd-card{height:64px; display:flex; gap:10px; padding:10px 10px 0}
-.sd-card svg{width:18px; height:18px; margin-top:1px; color:var(--info); stroke-width:1.9}
-.sd-card p{font-size:13px; line-height:18px; color:var(--ink-3)}
-.sd-card b{display:block; margin-top:3px; font-size:15px; line-height:20px; font-weight:600; color:var(--ink)}
-.sd-stats{display:grid; grid-template-columns:repeat(3,1fr); height:68px; margin-top:12px; align-items:center}
-.sd-stats div{position:relative; text-align:center}
-.sd-stats div + div::before{content:""; position:absolute; left:0; top:-2px; bottom:-2px; width:1px; background:var(--rule-2)}
-.sd-stats p{font-size:13px; line-height:18px; color:var(--ink-3)}
-.sd-stats b{display:block; margin-top:5px; font-size:16px; line-height:22px; font-weight:600}
-.sh-head{display:flex; align-items:baseline; gap:6px; margin-top:14px}
+.scr-sync .scroller{padding-top:calc(var(--sb) + 87.25px); padding-bottom:104px}
+.month-row{display:flex; align-items:center; justify-content:space-between; height:28px}
+.month-btn{display:flex; align-items:center; gap:9px; padding:0; border:0; background:none; font-size:16.5px; line-height:28px; font-weight:500; color:var(--ink); cursor:pointer}
+.month-btn svg{display:block; color:var(--ink-3)}
+.today-lbl{font-size:15px; line-height:28px; color:var(--ink-2)}
+/* horizontally scrollable day strip: whole-pixel 48px days so snap points never drift over years of dates */
+.days{display:flex; margin:15.75px 19px 0 20px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain}
+.days::-webkit-scrollbar{display:none}
+.day{flex:none; width:48px; display:flex; flex-direction:column; align-items:center; padding:0; border:0; background:none; font:inherit; scroll-snap-align:start; cursor:pointer}
+.day .wl{font-size:12px; line-height:20px; color:var(--ink-3); margin-bottom:11.75px}
+.day i{display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; font-style:normal; font-size:14.5px; color:var(--ink-2)}
+.day.td i{border:1.5px solid var(--maroon); color:var(--maroon); font-weight:500}
+.day.on i{border:0; background:var(--maroon); color:var(--on-maroon); font-weight:600}
+.day:disabled{cursor:default}
+.day:disabled i{color:var(--day-off-ink); background:var(--day-off)}
+.day:focus-visible{outline:none}
+.day:focus-visible i{outline:2px solid var(--maroon); outline-offset:2px}
+.cal-rule{height:1px; margin-top:22.25px; background:var(--rule-3)}
+.sd-head{font-size:16px; line-height:24px; font-weight:600; margin-top:25px}
+.sd-cards{display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:11px}
+.card{background:var(--surface); border-radius:12px; box-shadow:0 1px 7px rgba(40,30,50,.11)}
+.sd-card{position:relative; height:60px; min-width:0}
+.sd-card svg{position:absolute; left:11px; top:7px; width:16px; height:16px; color:var(--maroon); stroke-width:1.8}
+.sd-card p{position:absolute; left:38.5px; top:8px; font-size:13px; line-height:20px; color:var(--ink-2); white-space:nowrap}
+.sd-card b{position:absolute; left:38.5px; top:28px; font-size:14px; line-height:22px; font-weight:600; color:var(--ink); white-space:nowrap}
+.sd-stats{display:flex; height:65px; margin-top:16px; align-items:center}
+.sd-stats div{flex:1; position:relative; text-align:center}
+.sd-stats div + div::before{content:""; position:absolute; left:0; top:4px; bottom:4px; width:1px; background:var(--rule-4)}
+.sd-stats p{font-size:13px; line-height:20px; color:var(--ink-2)}
+.sd-stats b{display:block; margin-top:3px; font-size:16px; line-height:22px; font-weight:600; color:var(--ink)}
+.sh-head{display:flex; align-items:baseline; gap:4px; margin-top:15px}
 .sh-head h2{font-size:16px; line-height:24px; font-weight:600}
-.sh-head span{font-size:13px; color:var(--ink-3)}
-.empty{margin-top:43.5px; text-align:center; font-size:15px; line-height:22px; color:var(--ink-3)}
+.sh-head span{font-size:14px; color:var(--ink-3)}
+.empty{margin-top:43px; text-align:center; font-size:15px; line-height:22px; color:var(--ink-3)}
 
 /* ---------- Profile ---------- */
 .scr-profile .scroller{padding-top:calc(var(--sb) + 92px); padding-bottom:104px}
@@ -356,6 +363,7 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
 .is-device .phone{position:relative; width:375px; height:var(--H, 812px); transform:none; border-radius:0; box-shadow:none; -webkit-touch-callout:none}
 .is-device .statusbar, .is-device .home-ind{display:none}
 .is-device .scroller, .is-device .wheel{touch-action:pan-y}
+.is-device .days{touch-action:pan-x}
 .is-device.is-landscape .rotate{display:grid; place-items:center; position:fixed; inset:0; z-index:100; padding:24px; background:var(--maroon); color:var(--on-maroon); font:500 16px/1.5 var(--font); text-align:center}
 </style>
 </head>
@@ -614,26 +622,17 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
         <main class="scroller">
           <div class="pad">
             <div class="month-row">
-              <button type="button" class="month-btn" id="monthBtn" aria-haspopup="dialog"><span id="monthLbl">October 2026</span><svg class="ic"><use href="#i-chev-down"/></svg></button>
-              <span class="today-lbl" id="dayLbl">Oct 03, Wed</span>
+              <button type="button" class="month-btn" id="monthBtn" aria-haspopup="dialog"><span id="monthLbl">November 2026</span><svg width="13" height="8" viewBox="0 0 13 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5l5-5"/></svg></button>
+              <span class="today-lbl" id="dayLbl"></span>
             </div>
           </div>
-          <div class="week" id="week">
-            <span class="wd">M</span><span class="wd">T</span><span class="wd">W</span><span class="wd">T</span><span class="wd">F</span><span class="wd">S</span><span class="wd">S</span>
-            <button type="button" class="day" aria-pressed="false" data-d="1" data-w="Mon">1</button>
-            <button type="button" class="day" aria-pressed="false" data-d="2" data-w="Tue">2</button>
-            <button type="button" class="day" aria-pressed="true" data-d="3" data-w="Wed">3</button>
-            <button type="button" class="day" aria-pressed="false" data-d="4" data-w="Thu">4</button>
-            <button type="button" class="day today" aria-pressed="false" data-d="5" data-w="Fri">5</button>
-            <button type="button" class="day" aria-pressed="false" data-d="6" data-w="Sat">6</button>
-            <button type="button" class="day" aria-pressed="false" data-d="7" data-w="Sun">7</button>
-          </div>
+          <div class="days" id="days" aria-label="Day"></div>
           <div class="cal-rule"></div>
           <div class="pad">
             <h2 class="sd-head">Sync Details</h2>
             <div class="sd-cards">
-              <div class="card sd-card"><svg class="ic"><use href="#i-clock"/></svg><div><p>Day Start Time</p><b>10:43:26 PM</b></div></div>
-              <div class="card sd-card"><svg class="ic"><use href="#i-updown"/></svg><div><p>Last Sync Up</p><b>--</b></div></div>
+              <div class="card sd-card"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.2 2"/></svg><p>Day Start Time</p><b id="dayStart">--</b></div>
+              <div class="card sd-card"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20V5M3.5 8.5 7 4.5l3.5 4M17 4v15M13.5 15.5 17 19.5l3.5-4"/></svg><p>Last Sync Up</p><b>--</b></div>
             </div>
             <div class="card sd-stats">
               <div><p>Visits</p><b>0</b></div>
@@ -860,6 +859,7 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
     current = key;
     screens[key].hidden = false;
     phone.dataset.screen = key;
+    if (key === 'sync') { showWeek(); setMonthLabel(dayAt(sy.first + 3)); }
     lastY = activeScroller().scrollTop; run = 0;
     setCompact(false);
     setNavState();
@@ -978,22 +978,51 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
     document.getElementById('rangeTo').textContent = r[1];
   });
 
-  /* ---------- Sync History: day strip + month/year picker ---------- */
+  /* ---------- Sync History: scrollable day strip + month/year picker ---------- */
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var cal = { m: 9, y: 2026, d: 3, w: 'Wed' };
+  var WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], LETTERS = ['M','T','W','T','F','S','S'];
+  var YR0 = 2020, YN = 11, DAY_W = 48;
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
-  function renderCal() {
-    document.getElementById('monthLbl').textContent = MONTHS[cal.m] + ' ' + cal.y;
-    document.getElementById('dayLbl').textContent = MONTHS[cal.m].slice(0, 3) + ' ' + pad2(cal.d) + ', ' + cal.w;
+  function dayOnly(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function clock(d) { var h = d.getHours(), ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return pad2(h) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds()) + ' ' + ap; }
+  var appOpened = new Date(), today = dayOnly(appOpened);
+  var stripStart = new Date(YR0, 0, 1); stripStart.setDate(stripStart.getDate() - ((stripStart.getDay() + 6) % 7));   // Monday on or before 1 Jan
+  function dayAt(k) { return new Date(stripStart.getFullYear(), stripStart.getMonth(), stripStart.getDate() + k); }
+  function idxOf(d) { return Math.round((dayOnly(d) - stripStart) / 864e5); }
+  function weekStart(d) { return idxOf(d) - ((d.getDay() + 6) % 7); }
+  var stripLen = idxOf(new Date(today.getFullYear() + 1, 11, 31)) + 1;
+  var days = document.getElementById('days');
+  var html = '';
+  for (var k = 0; k < stripLen; k++) {
+    var dk = dayAt(k), future = dk > today, isToday = +dk === +today;
+    html += '<button type="button" class="day' + (isToday ? ' td' : '') + '" data-k="' + k + '"' + (future ? ' disabled' : '') +
+      ' aria-label="' + WEEKDAYS[dk.getDay()] + ' ' + dk.getDate() + ' ' + MONTHS[dk.getMonth()] + ' ' + dk.getFullYear() + '"><span class="wl">' + LETTERS[k % 7] + '</span><i>' + dk.getDate() + '</i></button>';
   }
-  var week = document.getElementById('week');
-  week.addEventListener('click', function (e) {
-    var d = e.target.closest('.day');
-    if (!d) return;
-    Array.prototype.forEach.call(week.querySelectorAll('.day'), function (x) { x.setAttribute('aria-pressed', String(x === d)); });
-    cal.d = +d.dataset.d; cal.w = d.dataset.w;
-    renderCal();
+  days.innerHTML = html;
+  var dayBtns = days.children;
+  var sy = { sel: today, first: weekStart(today) };
+  function setMonthLabel(d) { document.getElementById('monthLbl').textContent = MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+  function selectDay(d) {
+    var old = dayBtns[idxOf(sy.sel)]; if (old) { old.classList.remove('on'); old.setAttribute('aria-pressed', 'false'); }
+    sy.sel = dayOnly(d);
+    var b = dayBtns[idxOf(sy.sel)]; if (b) { b.classList.add('on'); b.setAttribute('aria-pressed', 'true'); }
+    document.getElementById('dayLbl').textContent = MONTHS[sy.sel.getMonth()].slice(0, 3) + ' ' + pad2(sy.sel.getDate()) + ', ' + WEEKDAYS[sy.sel.getDay()];
+    document.getElementById('dayStart').textContent = +sy.sel === +today ? clock(appOpened) : '--';
+    setMonthLabel(sy.sel);
+  }
+  function showWeek() { days.scrollLeft = sy.first * DAY_W; }
+  days.addEventListener('scroll', function () {   // the month label follows the middle of the visible week
+    var f = Math.max(0, Math.round(days.scrollLeft / DAY_W));
+    if (f === sy.first) return;
+    sy.first = f;
+    setMonthLabel(dayAt(f + 3));
+  }, { passive: true });
+  days.addEventListener('click', function (e) {
+    var b = e.target.closest('.day');
+    if (!b || b.disabled) return;
+    selectDay(dayAt(+b.dataset.k));
   });
+  selectDay(today);
 
   function Wheel(el, labels) {
     var IH = 36, R = 78, STEP = 0.5;
@@ -1024,16 +1053,19 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
       paint: paint
     };
   }
-  var YEARS = []; for (var yy = 2018; yy <= 2034; yy++) YEARS.push(yy);
+  var YEARS = []; for (var yy = YR0; yy < YR0 + YN; yy++) YEARS.push(yy);
   var wm = Wheel(document.getElementById('wheelMonth'), MONTHS.map(function (m) { return m.slice(0, 3); }));
   var wy = Wheel(document.getElementById('wheelYear'), YEARS);
   document.getElementById('monthBtn').addEventListener('click', function (e) {
     openSheet(pickerSheet, e.currentTarget);
-    requestAnimationFrame(function () { wm.set(cal.m); wy.set(YEARS.indexOf(cal.y)); });
+    requestAnimationFrame(function () { wm.set(sy.sel.getMonth()); wy.set(Math.max(0, YEARS.indexOf(sy.sel.getFullYear()))); });
   });
   document.getElementById('pickerConfirm').addEventListener('click', function () {
-    cal.m = wm.get(); cal.y = YEARS[wy.get()];
-    renderCal();
+    var m = wm.get(), y = YEARS[wy.get()], last = new Date(y, m + 1, 0).getDate();
+    var d = new Date(y, m, Math.min(sy.sel.getDate(), last));
+    if (d > today) d = today;   // no future days
+    selectDay(d);
+    sy.first = weekStart(d); showWeek(); setMonthLabel(d);
     closeSheet();
   });
 
@@ -1061,7 +1093,6 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
 
   /* ---------- boot ---------- */
   function relayout() { fit(); layoutNav(); }
-  renderCal();
   setNavState();
   relayout();
   window.addEventListener('resize', relayout);
