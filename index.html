@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Engage">
+<meta name="apple-mobile-web-app-title" content="Engage Fixed">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#861E51">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
-<title>Engage</title>
+<title>Engage Fixed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
@@ -830,23 +830,9 @@ html.is-device body{position:fixed; inset:0; -webkit-text-size-adjust:100%; touc
     layoutNav();
   }
 
-  /* ---------- scroll direction drives the header + nav on whichever screen is showing ---------- */
-  var lastY = 0, run = 0, THRESHOLD = 10;
+  /* ---------- fixed-nav variant: the header, bottom nav and Sync button stay put while the screen scrolls ---------- */
+  var lastY = 0, run = 0;
   function activeScroller() { return screens[current].querySelector('.scroller'); }
-  Array.prototype.forEach.call(phone.querySelectorAll('.screen .scroller'), function (sc) {
-    sc.addEventListener('scroll', function () {
-      if (sc !== activeScroller()) return;
-      var max = sc.scrollHeight - sc.clientHeight;
-      var y = Math.max(0, Math.min(sc.scrollTop, max));   // ignore rubber-band overscroll
-      var dy = y - lastY; lastY = y;
-      if (y <= 8) { run = 0; setCompact(false); return; }
-      if (!dy) return;
-      if ((dy > 0) !== (run > 0)) run = 0;
-      run += dy;
-      if (run > THRESHOLD) setCompact(true);
-      else if (run < -THRESHOLD) setCompact(false);
-    }, { passive: true });
-  });
 
   /* ---------- screens ---------- */
   function go(key) {
